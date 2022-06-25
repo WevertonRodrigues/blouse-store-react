@@ -8,7 +8,6 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Router } from './router';
 
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

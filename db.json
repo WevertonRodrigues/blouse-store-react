@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "email": "weverton.rodrigues96@yahoo.com",
+      "password": "$2a$10$ddW7FJG3CpF1RIgsxA4K/.rYEoIqIGq83kyCpBySFieIPonCQmkbC",
+      "id": 1
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

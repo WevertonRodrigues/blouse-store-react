@@ -1,20 +1,15 @@
-import React from "react";
+import { useAuth } from "../hooks/useAuth";
 
-interface HomePageState {
-  title: string;
-}
+export default function HomePage() {
+  const { user } = useAuth()
 
-export default class HomePage extends React.Component<{}, HomePageState> {
-  constructor(props: any) {
-    super(props);
-    this.state = { title: "Página Inicial" };
-  }
-
-   render() {
     return (
       <div className="HomePage">
-        {this.state.title}       
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+          <h3>
+            Seja bem vindo(a), {<span>{user?.email}</span>}!
+          </h3>
+        </div>
       </div>
     );
-  }
 }
