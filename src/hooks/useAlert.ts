@@ -1,26 +1,28 @@
 import { AlertColor } from "@mui/material";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
+
+export interface UseAlertState {
+  show: boolean;
+  content: ReactNode;
+  type: AlertColor;
+}
 
 export function useAlert() {
-  const [alert, setAlert] = useState<{
-    show: boolean;
-    msg: string;
-    type: AlertColor;
-  }>({
+  const [alert, setAlert] = useState<UseAlertState>({
     show: false,
-    msg: "",
+    content: "",
     type: "error",
   });
 
   const showAlert = (
-    msg: string,
+    content: ReactNode,
     options: { type: AlertColor } = { type: "error" }
   ) => {
     setAlert({
       ...alert,
       ...options,
       show: true,
-      msg,
+      content,
     });
   };
 
@@ -35,6 +37,6 @@ export function useAlert() {
     alert,
     setAlert,
     showAlert,
-    closeAlert
+    closeAlert,
   };
 }

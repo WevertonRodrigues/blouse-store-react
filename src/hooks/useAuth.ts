@@ -3,9 +3,9 @@ import { AxiosResponse } from "axios";
 import { User } from "../services/models";
 import { useStorage } from "./useStorage";
 import { normalizeRequestResponseMessages } from "../util";
-import { LoginCredentials } from "../components/forms/login/loginForm";
 import { useAppSelector } from "../store";
 import { selectUser } from "../store/user";
+import { LoginCredentials } from "../components/forms/forms/login";
 
 interface JWTResponse {
   accessToken: string;
@@ -13,43 +13,47 @@ interface JWTResponse {
 }
 
 export function useAuth() {
-  const user = useAppSelector(selectUser)
-
+  const user = useAppSelector(selectUser);
 
   return {
     user,
-    get isLogged(){
-      return !!user
+    get isLogged() {
+      return !!user;
     },
-    login: useFetchLogin,
-    signup: useFetchSignup,
+    login: useLogin,
+    signup: useSignup,
+    logout: useLogout,
   };
 }
 
 async function useJwtRequest(route: string, credentials: LoginCredentials) {
-  const { setItems } = useStorage();
+  const { setItem } = useStorage();
 
   return await api
-    .post<LoginCredentials, AxiosResponse>(
-      route,
-      credentials
-    )
+    .post<LoginCredentials, AxiosResponse>(route, credentials)
     .then(({ data }: AxiosResponse<JWTResponse>) => {
-      setItems({ blouse_shop: {token: data.accessToken} });
+      setItem("blouse_shop", { token: data.accessToken });
 
-      return data;
+      return Promise.resolve(data);
     })
     .catch((err) => {
       const data = err.response.data;
 
-      return Promise.reject(Error(normalizeRequestResponseMessages(data)))
+      return Promise.reject({
+        message: normalizeRequestResponseMessages(data),
+      });
     });
 }
 
-async function useFetchSignup(credentials: LoginCredentials) {
+async function useSignup(credentials: User) {
   return useJwtRequest("/signup", credentials);
 }
 
-async function useFetchLogin(credentials: LoginCredentials) {
+async function useLogin(credentials: LoginCredentials) {
   return useJwtRequest("/login", credentials);
+}
+
+async function useLogout() {
+  /* const { navigate } = useNavigate("/login");
+  navigate(); */
 }
