@@ -1,8 +1,15 @@
 import { Drawer, List, ListItem, ListItemButton } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import routes from "../../router/routes";
 
 export default function Sidebar() {
+  const { isLogged } = useAuth()
+
+  if(!isLogged){
+    return <span></span>
+  }
+  
   return (
     <Drawer variant="permanent" anchor="left">
       <List>

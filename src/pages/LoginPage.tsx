@@ -7,6 +7,8 @@ import LoginForm, {
 } from "../components/forms/login/loginForm";
 import { useAlert } from "../hooks/useAlert";
 import { useAuth } from "../hooks/useAuth";
+import { useAppDispatch } from "../store";
+import { setUser } from "../store/user";
 
 export default function LoginPage() {
   const style: Record<"container" | "stack" | "card", React.CSSProperties> = {
@@ -24,10 +26,13 @@ export default function LoginPage() {
   const { alert, showAlert, closeAlert } = useAlert();
   let navigate = useNavigate();
   let location = useLocation();
+  const dispatch = useAppDispatch()
 
   const login = async (credentials: LoginCredentials) => {
     await onLogin(credentials)
-      .then(() => {
+      .then(({user}) => {
+        dispatch(setUser(user))
+
         let from = (location.state as any)?.from?.pathname || "/";
 
         navigate(from, { replace: true })

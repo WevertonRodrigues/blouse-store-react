@@ -1,19 +1,21 @@
-import { AxiosResponse } from "axios";
-import { LoginCredentials } from "../components/forms/login/loginForm";
 import api from "../services/api";
+import { AxiosResponse } from "axios";
 import { User } from "../services/models";
-import { normalizeRequestResponseMessages } from "../util";
 import { useStorage } from "./useStorage";
+import { normalizeRequestResponseMessages } from "../util";
+import { LoginCredentials } from "../components/forms/login/loginForm";
+import { useAppSelector } from "../store";
+import { selectUser } from "../store/user";
 
 interface JWTResponse {
   accessToken: string;
-  user: Pick<User, "id" | "email">;
+  user: User;
 }
 
-let user: User | null = null
-
-
 export function useAuth() {
+  const user = useAppSelector(selectUser)
+
+
   return {
     user,
     get isLogged(){
@@ -28,12 +30,11 @@ async function useJwtRequest(route: string, credentials: LoginCredentials) {
   const { setItems } = useStorage();
 
   return await api
-    .post<LoginCredentials, AxiosResponse<JWTResponse | Error>>(
+    .post<LoginCredentials, AxiosResponse>(
       route,
       credentials
     )
-    .then(({ data }: AxiosResponse) => {
-      user = data.user
+    .then(({ data }: AxiosResponse<JWTResponse>) => {
       setItems({ blouse_shop: {token: data.accessToken} });
 
       return data;

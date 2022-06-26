@@ -2,7 +2,7 @@ import HomePage from "../pages/HomePage";
 import ListPage from "../pages/ListPage";
 import LoginPage from "../pages/LoginPage";
 import Auth from "./components/Auth";
-import Unauth from "./components/Unauth";
+import EnsureUnauth from "./components/EnsureUnauth";
 
 interface Route {
   path: string;
@@ -16,14 +16,14 @@ interface Route {
 
 export const middlewares = {
   auth: Auth,
-  unauth: Unauth,
+  'ensure-unauth': EnsureUnauth,
 };
 
 const routes: Route[] = [
   {
     path: "/",
     sidebarName: "Home",
-    middleware: 'unauth',
+    middleware: 'auth',
     component: HomePage,
     options: {
       index: true,
@@ -32,12 +32,12 @@ const routes: Route[] = [
   {
     path: "/list",
     sidebarName: "List",
-    middleware: 'unauth',
+    middleware: 'auth',
     component: ListPage,
   },
   {
     path: "/login",
-    middleware: "auth",
+    middleware: "ensure-unauth",
     component: LoginPage,
   },
 ];
