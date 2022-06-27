@@ -1,9 +1,21 @@
-import { Button, Drawer, List, ListItem, ListItemButton } from "@mui/material";
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemButton,
+  SwipeableDrawer,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import routes from "../../router/routes";
-import { useAppDispatch } from "../../store";
+import {
+  closeSidebar,
+  openSidebar,
+  isOpen,
+  useAppDispatch,
+  useAppSelector,
+} from "../../store";
 import { resetUser } from "../../store/user";
 
 const style: React.CSSProperties = {
@@ -13,6 +25,7 @@ const style: React.CSSProperties = {
 export default function Sidebar() {
   const { isLogged } = useAuth();
   const dispatch = useAppDispatch();
+  const opened = useAppSelector(isOpen);
 
   if (!isLogged) {
     return <span></span>;
@@ -23,7 +36,12 @@ export default function Sidebar() {
   };
 
   return (
-    <Drawer variant="permanent" anchor="left">
+    <SwipeableDrawer
+      open={opened}
+      onOpen={() => dispatch(openSidebar())}
+      onClose={() => dispatch(closeSidebar())}
+      anchor="left"
+    >
       <Box
         sx={{
           display: "flex",
@@ -37,17 +55,21 @@ export default function Sidebar() {
           {routes
             .filter((route) => route.sidebarName)
             .map((route) => (
-              <ListItem key={route.path}>
-                <Link to={route.path} style={style}>
-                  <ListItemButton>{route.sidebarName}</ListItemButton>
+              <ListItem key={route.path} disablePadding>
+                <Link className="no-link-style" to={route.path} style={style}>
+                  <ListItemButton LinkComponent={Link} style={style}>
+                    {route.sidebarName}
+                  </ListItemButton>
                 </Link>
               </ListItem>
             ))}
         </List>
-        <Button variant="contained" onClick={onLogout}>
-          <Link to="/login">Sair</Link>
-        </Button>
+        <Link className="no-link-style" to="/login">
+          <Button sx={{ width: "100%" }} variant="contained" onClick={onLogout}>
+            Sair
+          </Button>
+        </Link>
       </Box>
-    </Drawer>
+    </SwipeableDrawer>
   );
 }

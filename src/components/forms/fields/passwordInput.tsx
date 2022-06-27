@@ -2,6 +2,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { useState } from "react";
 import { IField } from "../../../hooks/useFormBuilderValidation";
+import { User } from "../../../services";
 import { handleMouseDownPassword } from "../../../util";
 
 interface PasswordInputProps {
@@ -9,6 +10,8 @@ interface PasswordInputProps {
   register: any;
   error: any;
 }
+
+export type UserPasswordRepeat = User & { passwordRepeat?: string };
 
 export default function PasswordInput({
   field,

@@ -12,3 +12,7 @@ code {
 .page-container{
   height: 100%;
 }
+
+.no-link-style {
+  text-decoration: none;
+}

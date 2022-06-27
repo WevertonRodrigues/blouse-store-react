@@ -3,10 +3,12 @@ import { UseFormBuilderReturn } from "../../../hooks/useFormBuilderValidation";
 import PasswordInput from "../fields/passwordInput";
 
 export interface IFormBuilderProps {
+  defaultValue?: any;
   builder: UseFormBuilderReturn;
 }
 
 export default function FormBuilder({
+  defaultValue = {},
   builder: { fields, errors, register },
 }: IFormBuilderProps) {
   return (
@@ -30,6 +32,7 @@ export default function FormBuilder({
             key={field.field}
             label={field.label}
             variant="standard"
+            defaultValue={defaultValue[field.field]}
             error={!!message}
             helperText={message}
             InputProps={{

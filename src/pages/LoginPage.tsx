@@ -22,7 +22,7 @@ export default function LoginPage() {
       .catch(({ message: content }: Error) => {
         showAlert(content, { type: "error" });
       });
-  }) as any as OnSubmitFnType<LoginCredentials>;
+  }) as unknown as OnSubmitFnType<LoginCredentials>;
 
   return (
     <RegisterContainer

@@ -6,6 +6,7 @@ import { normalizeRequestResponseMessages } from "../util";
 import { useAppSelector } from "../store";
 import { selectUser } from "../store/user";
 import { LoginCredentials } from "../components/forms/forms/login";
+import { UserPasswordRepeat } from "../components";
 
 interface JWTResponse {
   accessToken: string;
@@ -20,6 +21,7 @@ export function useAuth() {
     get isLogged() {
       return !!user;
     },
+    updateProfile: useUpdate,
     login: useLogin,
     signup: useSignup,
     logout: useLogout,
@@ -45,8 +47,19 @@ async function useJwtRequest(route: string, credentials: LoginCredentials) {
     });
 }
 
-async function useSignup(credentials: User) {
-  return useJwtRequest("/signup", credentials);
+async function useUpdate(payload: UserPasswordRepeat) {
+  delete payload.passwordRepeat;
+
+  return await api
+    .patch(`/users/${payload.id}`, payload)
+    .then((res: AxiosResponse<Partial<User>>) => {
+      delete res.data.password;
+      return res.data as User;
+    });
+}
+
+async function useSignup(payload: User) {
+  return useJwtRequest("/signup", payload);
 }
 
 async function useLogin(credentials: LoginCredentials) {

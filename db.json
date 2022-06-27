@@ -5,6 +5,18 @@
       "password": "$2a$10$ddW7FJG3CpF1RIgsxA4K/.rYEoIqIGq83kyCpBySFieIPonCQmkbC",
       "name": "Weverton Rodrigues",
       "id": 1
+    },
+    {
+      "email": "",
+      "password": "",
+      "name": "JOSE WEVERTON RODRIGUES DE CASTRO",
+      "id": 2
+    },
+    {
+      "email": "wen9362@yahoo.com.br",
+      "password": "$2a$10$InyoGoJdw3UoH/dou351SOjb6l9JA715xtq.4QoXiAaeCPVPGMXO6",
+      "name": "Weverton Rodrigues",
+      "id": 3
     }
   ],
   "posts": [

@@ -3,8 +3,9 @@ import {
   FieldErrors,
   SubmitHandler,
   useForm,
+  UseFormHandleSubmit,
   UseFormRegister,
-  UseFormReturn,
+  UseFormResetField,
 } from "react-hook-form";
 import * as yup from "yup";
 
@@ -24,7 +25,7 @@ export interface IField {
   label: string;
   field: string;
   type?: "text" | "password" | undefined;
-  validations: Validation[];
+  validations?: Validation[];
 }
 
 function composeValidation(yup: any, validations: Validation[]): any {
@@ -51,7 +52,7 @@ function composeValidation(yup: any, validations: Validation[]): any {
   return composeValidation(yup[validation.rule](...values), validations);
 }
 
-function composeSchema(fields: IField[]) {
+export function composeSchema(fields: IField[]) {
   const composeSchema = fields.reduce((acc, field) => {
     const key = field.field;
     const type =
@@ -80,11 +81,13 @@ export interface UseFormBuilderReturn<D = any, T = any> {
   fields: IField[];
   errors: FieldErrors<T>;
   handleSubmit: () => SubmitHandler<D>;
+  onHandleSubmit: UseFormHandleSubmit<T>;
+  resetField: UseFormResetField<T>;
 }
 
 export function useFormBuilderValidation<D = any, T = any>(
   fields: IField[],
-  onSubmit: () => SubmitHandler<D>
+  onSubmit?: () => SubmitHandler<D>
 ) {
   const schema = composeSchema(fields);
 
@@ -92,12 +95,15 @@ export function useFormBuilderValidation<D = any, T = any>(
     register,
     handleSubmit,
     formState: { errors },
+    resetField,
   } = useForm<T>({ resolver: yupResolver(schema) });
 
   return {
     register,
-    handleSubmit: () => handleSubmit(onSubmit),
+    handleSubmit: () => handleSubmit(onSubmit ?? (() => null)),
+    onHandleSubmit: handleSubmit,
     errors,
     fields,
+    resetField,
   } as unknown as UseFormBuilderReturn<D, T>;
 }

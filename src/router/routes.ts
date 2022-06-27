@@ -40,6 +40,7 @@ const routes: Route[] = [
   {
     path: "/settings",
     sidebarName: "Configurações",
+    middleware: "auth",
     component: SettingsPage,
   },
   {

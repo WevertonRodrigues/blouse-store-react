@@ -9,7 +9,7 @@ import {
 import { Container } from "@mui/system";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { UseAlertState } from "../hooks/useAlert";
+import { UseAlertState } from "../../hooks/useAlert";
 
 interface LinkContext {
   to: string;
