@@ -1,15 +1,5 @@
-import {
-  Alert,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Collapse,
-  Stack,
-} from "@mui/material";
-import { Box } from "@mui/system";
-import { FormBuilder, UserPasswordRepeat } from "../components";
+import { Alert, Collapse } from "@mui/material";
+import { FormBuilder, PageContainer, UserPasswordRepeat } from "../components";
 import {
   IField,
   useAlert,
@@ -20,8 +10,7 @@ import {
 import { User } from "../services/models";
 import { selectUser, setUser, useAppDispatch, useAppSelector } from "../store";
 import * as yup from "yup";
-import { useEffect, useState } from "react";
-import { UseFormHandleSubmit } from "react-hook-form";
+import { IAction } from "../components/general/pageContainer";
 
 const fields: IField[] = [
   {
@@ -54,6 +43,13 @@ const fields: IField[] = [
         values: [[yup.ref("password"), null], "Senhas não conferem"],
       },
     ],
+  },
+];
+
+const actions: IAction[] = [
+  {
+    text: "Salvar alterações",
+    type: "submit",
   },
 ];
 
@@ -92,33 +88,22 @@ export default function SettingsPage() {
   };
 
   return (
-    <Box sx={{ height: "100%", padding: "1em" }}>
-      <Card
-        variant="outlined"
-        component="form"
-        onSubmit={builder.onHandleSubmit(update)}
-        sx={{ height: "100%", display: "flex", flexDirection: "column" }}
-      >
-        <CardHeader title="Atualize as informações"></CardHeader>
-        <CardContent component={Stack} sx={{ height: "100%" }} spacing={2}>
-          <Collapse in={alert.show}>
-            <Alert
-              sx={{ alignItems: "center" }}
-              severity={alert.type}
-              onClose={closeAlert}
-            >
-              {alert.content}
-            </Alert>
-          </Collapse>
+    <PageContainer
+      onSubmit={builder.onHandleSubmit(update)}
+      title="Atualize as informações"
+      actions={actions}
+    >
+      <Collapse in={alert.show}>
+        <Alert
+          sx={{ alignItems: "center" }}
+          severity={alert.type}
+          onClose={closeAlert}
+        >
+          {alert.content}
+        </Alert>
+      </Collapse>
 
-          <FormBuilder builder={builder} defaultValue={user} />
-        </CardContent>
-        <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button variant="contained" type="submit">
-            Salvar alterações
-          </Button>
-        </CardActions>
-      </Card>
-    </Box>
+      <FormBuilder builder={builder} defaultValue={user} />
+    </PageContainer>
   );
 }

@@ -8,7 +8,7 @@ import {
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import routes from "../../router/routes";
+import { sidebar } from "../../router/routes";
 import {
   closeSidebar,
   openSidebar,
@@ -52,17 +52,15 @@ export default function Sidebar() {
         }}
       >
         <List>
-          {routes
-            .filter((route) => route.sidebarName)
-            .map((route) => (
-              <ListItem key={route.path} disablePadding>
-                <Link className="no-link-style" to={route.path} style={style}>
-                  <ListItemButton LinkComponent={Link} style={style}>
-                    {route.sidebarName}
-                  </ListItemButton>
-                </Link>
-              </ListItem>
-            ))}
+          {sidebar.map((route) => (
+            <ListItem key={route.path} disablePadding>
+              <Link className="no-link-style" to={route.path!} style={style}>
+                <ListItemButton LinkComponent={Link} style={style}>
+                  {route.sidebarName}
+                </ListItemButton>
+              </Link>
+            </ListItem>
+          ))}
         </List>
         <Link className="no-link-style" to="/login">
           <Button sx={{ width: "100%" }} variant="contained" onClick={onLogout}>

@@ -1,5 +1,5 @@
 import HomePage from "../pages/HomePage";
-import ListPage from "../pages/ListPage";
+import { ListPage, ListId } from "../pages/ListPage";
 import LoginPage from "../pages/LoginPage";
 import SettingsPage from "../pages/SettingsPage";
 import SignupPage from "../pages/SignupPage";
@@ -11,31 +11,38 @@ export const middlewares = {
   "ensure-unauth": EnsureUnauth,
 };
 
-interface Route {
-  path: string;
-  component: (() => JSX.Element) | typeof ListPage;
+export interface SourceRoute {
+  path?: string;
+  component?: () => JSX.Element;
   middleware?: keyof typeof middlewares;
   sidebarName?: string;
-  options?: {
-    index: boolean;
-  };
+  children?: SourceRoute[];
+  index?: boolean;
 }
 
-const routes: Route[] = [
+const routes: SourceRoute[] = [
   {
     path: "/",
     sidebarName: "Home",
     middleware: "auth",
     component: HomePage,
-    options: {
-      index: true,
-    },
+    index: true,
   },
   {
     path: "/list",
     sidebarName: "Lista",
-    middleware: "auth",
-    component: ListPage,
+    children: [
+      {
+        index: true,
+        component: ListPage,
+        middleware: "auth",
+      },
+      {
+        path: ":id",
+        component: ListId,
+        middleware: "auth",
+      },
+    ],
   },
   {
     path: "/settings",
@@ -54,5 +61,7 @@ const routes: Route[] = [
     component: SignupPage,
   },
 ];
+
+export const sidebar = routes.filter((route) => route.sidebarName);
 
 export default routes;
