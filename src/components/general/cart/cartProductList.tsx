@@ -23,7 +23,9 @@ import Counter from "../counter";
 import ImgProduct from "../ImgProduct";
 
 function CartEmpty() {
-  return <Typography>Não há produtos no carrinho</Typography>;
+  return (
+    <Typography textAlign="center">Não há produtos no carrinho</Typography>
+  );
 }
 
 function Total({ label, number }: { label: string; number: number }) {
@@ -33,7 +35,6 @@ function Total({ label, number }: { label: string; number: number }) {
     <TextField
       label={label}
       variant="standard"
-      color="primary"
       sx={{
         flex: "1",
       }}
@@ -41,7 +42,6 @@ function Total({ label, number }: { label: string; number: number }) {
       InputProps={{
         readOnly: true,
       }}
-      focused
     ></TextField>
   );
 }
@@ -121,7 +121,7 @@ export default function CartProductList() {
         maxHeight="70vh"
         minWidth="100%"
         sx={{
-          overflowY: "scroll",
+          overflowY: "auto",
         }}
       >
         {cart.map((product) => (

@@ -44,9 +44,12 @@ export default function RegisterContainer({
     <Container className="RegisterContainer" style={style.container}>
       <Stack justifyContent="center" alignItems="center" style={style.stack}>
         <Card style={style.card}>
+          {/* Header */}
           <CardHeader title={title}></CardHeader>
+          {/* Content */}
           <CardContent component={Stack} spacing={2}>
             {children}
+            {/* Alert */}
             <Collapse in={alert.show}>
               <Alert
                 sx={{ alignItems: "center" }}
@@ -56,7 +59,10 @@ export default function RegisterContainer({
                 {alert.content}
               </Alert>
             </Collapse>
-            <Link to={link.to}>{link.content}</Link>
+            {/* Link */}
+            <Link className="hover-link" to={link.to}>
+              {link.content}
+            </Link>
           </CardContent>
         </Card>
       </Stack>

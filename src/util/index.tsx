@@ -4,7 +4,7 @@ export * from "./parse";
 export * from "./random";
 export * from "./strings";
 
-export function handleMouseDownPassword(
+export function handlePreventDefault(
   event: React.MouseEvent<HTMLButtonElement>
 ) {
   event.preventDefault();

@@ -7,6 +7,6 @@ export { default as ImgProduct } from "./ImgProduct";
 export { default as ImgProductWithFloatingBtn } from "./imgProductWithFlotingBtn";
 export { default as RegisterContainer } from "./registerContainer";
 export { default as Sidebar } from "./sidebar";
-export { default as Toolbar } from "./toolbar";
+export { default as Theme } from "./theme";
 
 export * from "./cart";

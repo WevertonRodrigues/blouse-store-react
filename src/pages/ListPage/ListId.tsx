@@ -14,7 +14,7 @@ import { ObjectStyle } from "../../@types";
 const styles: ObjectStyle = {
   addProduct: {
     position: "fixed",
-    bottom: "5%",
+    bottom: "10%",
     left: "90%",
   },
 };

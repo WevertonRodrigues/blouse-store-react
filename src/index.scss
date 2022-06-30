@@ -13,9 +13,18 @@ code {
   height: 100%;
 }
 
-.no-link-style {
+a {
   text-decoration: none;
+  color: inherit;
+  &.hover-link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    &:hover{
+      opacity: 0.5;
+    }
+  }
 }
+
 
 .hoverable {
   & > * .hoverable {

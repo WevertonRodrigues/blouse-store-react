@@ -8,7 +8,7 @@ export default function HomePage() {
 
   return (
     <PageContainer>
-      <Stack alignItems="center" justifyContent="center">
+      <Stack alignItems="center" justifyContent="center" height="100%">
         <h3>Seja bem vindo(a), {<span>{user?.name}</span>}!</h3>
       </Stack>
     </PageContainer>

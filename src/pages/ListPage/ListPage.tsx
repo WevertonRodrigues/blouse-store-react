@@ -51,13 +51,17 @@ function ListTooltip({ product }: { product: Product }) {
 }
 
 function ToProduct({ children, id }: { children: ReactNode; id: number }) {
-  return <Link to={`/list/${id}`}>{children}</Link>;
+  return (
+    <Link className="hover-link" to={`/list/${id}`}>
+      {children}
+    </Link>
+  );
 }
 
-function ListItem({ index }: { index: number }) {
+function ListItem({ product }: { product: Product }) {
   const { currency } = useNumeral();
 
-  const product: Product = {
+  /* const product: Product = {
     id: index,
     name: `Item ${index + 1} com nome extenso para teste do overflow em
     relação a seu pai que é um pseudo-cartão`,
@@ -70,7 +74,7 @@ function ListItem({ index }: { index: number }) {
     price: randomNumber(150, 2500),
     size: randomEnumValue(Size),
     tissue: randomEnumValue(Tissue),
-  };
+  }; */
 
   return (
     <Card variant="outlined">
@@ -108,12 +112,23 @@ function ListItem({ index }: { index: number }) {
 }
 
 export default function ListPage() {
+  const list: Product[] = Array.from(Array(20)).map((_, index) => ({
+    id: index,
+    name: `Item ${index + 1} com nome extenso para teste do overflow em
+    relação a seu pai que é um pseudo-cartão`,
+    description: "Descrição do item",
+    images: [`https://picsum.photos/1200/1400?random=${index}`],
+    price: randomNumber(150, 500),
+    size: randomEnumValue(Size),
+    tissue: randomEnumValue(Tissue),
+  }));
+
   return (
     <PageContainer>
       <Grid container spacing={{ xs: 2, md: 3 }}>
-        {Array.from(Array(20)).map((_, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
-            <ListItem index={index} />
+        {list.map((product) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={product.id}>
+            <ListItem product={product} />
           </Grid>
         ))}
       </Grid>

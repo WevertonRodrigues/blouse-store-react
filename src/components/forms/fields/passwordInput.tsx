@@ -3,7 +3,7 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { useState } from "react";
 import { IField } from "../../../hooks/useFormBuilderValidation";
 import { User } from "../../../services";
-import { handleMouseDownPassword } from "../../../util";
+import { handlePreventDefault } from "../../../util";
 
 interface PasswordInputProps {
   field: IField;
@@ -38,7 +38,7 @@ export default function PasswordInput({
             aria-label="toggle password visibility"
             size="small"
             onClick={() => setShowPassword(!showPassword)}
-            onMouseDown={handleMouseDownPassword}
+            onMouseDown={handlePreventDefault}
           >
             <Icon />
           </IconButton>

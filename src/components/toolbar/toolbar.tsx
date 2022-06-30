@@ -9,7 +9,8 @@ import {
   useAppSelector,
 } from "../../store";
 import { useAuth } from "../../hooks";
-import { CartBtn } from "../toolbar";
+import ThemeSwitcher from "./themeSwitcher";
+import CartBtn from "./cartBtn";
 
 export default function Toolbar() {
   const dispatch = useAppDispatch();
@@ -42,8 +43,12 @@ export default function Toolbar() {
           Loja de Blusas
         </Typography>
 
-        {/* Cart btn */}
+        {/* Actions */}
+        {/* Cart controller */}
         <CartBtn />
+
+        {/* Theme switcher */}
+        <ThemeSwitcher />
       </ToolbarMui>
     </AppBar>
   );

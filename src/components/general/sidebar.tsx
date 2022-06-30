@@ -1,5 +1,6 @@
 import {
   Button,
+  createTheme,
   List,
   ListItem,
   ListItemButton,
@@ -18,14 +19,11 @@ import {
 } from "../../store";
 import { resetUser } from "../../store/user";
 
-const style: React.CSSProperties = {
-  width: "100%",
-};
-
 export default function Sidebar() {
   const { isLogged } = useAuth();
   const dispatch = useAppDispatch();
   const opened = useAppSelector(isOpen);
+  const theme = createTheme();
 
   if (!isLogged) {
     return <span></span>;
@@ -54,19 +52,33 @@ export default function Sidebar() {
         <List>
           {sidebar.map((route) => (
             <ListItem key={route.path} disablePadding>
-              <Link className="no-link-style" to={route.path!} style={style}>
-                <ListItemButton LinkComponent={Link} style={style}>
+              <Link
+                className="no-link-style"
+                to={route.path!}
+                style={{
+                  width: "100%",
+                }}
+              >
+                <ListItemButton
+                  sx={{
+                    width: "100%",
+                  }}
+                >
                   {route.sidebarName}
                 </ListItemButton>
               </Link>
             </ListItem>
           ))}
         </List>
-        <Link className="no-link-style" to="/login">
-          <Button sx={{ width: "100%" }} variant="contained" onClick={onLogout}>
-            Sair
-          </Button>
-        </Link>
+
+        <Button
+          href="/login"
+          sx={{ width: "100%" }}
+          variant="contained"
+          onClick={onLogout}
+        >
+          Sair
+        </Button>
       </Box>
     </SwipeableDrawer>
   );
