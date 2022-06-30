@@ -27,14 +27,14 @@ export default function AddProductToCartBtn({
   const data: {
     title: string;
     icon: typeof Check | typeof AddShoppingCart;
-    color: "primary" | "secondary";
+    color: "primary" | "success";
     click: (event: any) => any;
     style?: React.CSSProperties;
   } = isSelected
     ? {
         title: "Produto já adicionado ao carrinho!",
         icon: Check,
-        color: "secondary",
+        color: "success",
         click: (event: MouseEvent) => event.preventDefault(),
         style: {
           cursor: "not-allowed",

@@ -33,7 +33,7 @@ export default function PasswordInput({
       const Icon = data.options.icon;
 
       return (
-        <InputAdornment position="end">
+        <InputAdornment position="end" sx={{ flexShrink: "1" }}>
           <IconButton
             aria-label="toggle password visibility"
             size="small"
@@ -54,6 +54,7 @@ export default function PasswordInput({
       type={data.options.type}
       error={!!errors}
       helperText={errors}
+      InputLabelProps={{ shrink: true }}
       InputProps={{
         ...register,
         endAdornment: data.endAdornment,

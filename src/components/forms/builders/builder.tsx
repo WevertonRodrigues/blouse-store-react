@@ -32,9 +32,10 @@ export default function FormBuilder({
             key={field.field}
             label={field.label}
             variant="standard"
-            defaultValue={defaultValue[field.field]}
+            defaultValue={defaultValue?.[field.field] ?? undefined}
             error={!!message}
             helperText={message}
+            InputLabelProps={{ shrink: true }}
             InputProps={{
               ...register(field.field),
             }}

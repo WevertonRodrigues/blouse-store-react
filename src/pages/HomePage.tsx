@@ -1,16 +1,16 @@
+import { Stack } from "@mui/material";
+import { PageContainer } from "../components";
 import { useAppSelector } from "../store";
 import { selectUser } from "../store/user";
 
 export default function HomePage() {
-    const user = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser);
 
-    return (
-      <div className="HomePage">
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-          <h3>
-            Seja bem vindo(a), {<span>{user?.name}</span>}!
-          </h3>
-        </div>
-      </div>
-    );
+  return (
+    <PageContainer>
+      <Stack alignItems="center" justifyContent="center">
+        <h3>Seja bem vindo(a), {<span>{user?.name}</span>}!</h3>
+      </Stack>
+    </PageContainer>
+  );
 }

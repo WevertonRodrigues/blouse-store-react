@@ -33,9 +33,9 @@ const routes: SourceRoute[] = [
     sidebarName: "Lista",
     children: [
       {
-        index: true,
         component: ListPage,
         middleware: "auth",
+        index: true,
       },
       {
         path: ":id",

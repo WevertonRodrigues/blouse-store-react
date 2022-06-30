@@ -16,7 +16,9 @@ export default function BackRouteBtn({
         <Button
           variant="outlined"
           onClick={() =>
-            navigate((navigationType === "POP" ? parentRoute || "/" : -1) as To)
+            navigate(
+              (navigationType === "PUSH" ? -1 : parentRoute || "/") as To
+            )
           }
         >
           <ArrowBack /> Voltar

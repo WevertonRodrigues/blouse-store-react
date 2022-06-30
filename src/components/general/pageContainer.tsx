@@ -54,7 +54,11 @@ export default function PageContainer({
             title={
               <Stack direction="row">
                 {location.pathname !== "/" && (
-                  <BackRouteBtn parentRoute="/list" />
+                  <BackRouteBtn
+                    parentRoute={
+                      location.pathname !== "/list" ? "/list" : undefined
+                    }
+                  />
                 )}
                 <Box flex={1}>{title}</Box>
               </Stack>
