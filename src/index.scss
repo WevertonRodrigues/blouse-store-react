@@ -16,3 +16,14 @@ code {
 .no-link-style {
   text-decoration: none;
 }
+
+.hoverable {
+  & > * .hoverable {
+    transition: opacity 300ms ease-out;
+    opacity: 0;
+  }
+
+  &:hover > * .hoverable {
+    opacity: 1;
+  }
+}
