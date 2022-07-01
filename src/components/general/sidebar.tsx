@@ -1,6 +1,5 @@
 import {
   Button,
-  createTheme,
   List,
   ListItem,
   ListItemButton,
@@ -23,7 +22,6 @@ export default function Sidebar() {
   const { isLogged } = useAuth();
   const dispatch = useAppDispatch();
   const opened = useAppSelector(isOpen);
-  const theme = createTheme();
 
   if (!isLogged) {
     return <span></span>;

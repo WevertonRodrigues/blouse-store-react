@@ -7,33 +7,294 @@
       "id": 1
     },
     {
-      "email": "",
-      "password": "",
-      "name": "JOSE WEVERTON RODRIGUES DE CASTRO",
-      "id": 2
-    },
-    {
       "email": "wen9362@yahoo.com.br",
       "password": "$2a$10$U2C3PDIoP9zGoHb7CDbq5ecWlvR881jzhYUPssypinEQ7f2iJfrRi",
       "name": "Weverton Rodrigues",
-      "id": 3
+      "id": 2
     }
   ],
-  "posts": [
+  "products": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "name": "Calção Marquisa",
+      "description": "Descrição do item",
+      "images": [
+        "https://static.netshoes.com.br/produtos/calcao-de-futebol-em-poliester-liso/06/BDH-0008-006/BDH-0008-006_zoom1.jpg?ts=1572434734&ims=544x"
+      ],
+      "price": 403,
+      "size": 5,
+      "tissue": 4
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "name": "Luva Haemy",
+      "description": "Descrição do item",
+      "images": [
+        "https://m.media-amazon.com/images/I/61rbm2OxTiL._AC_SL1004_.jpg"
+      ],
+      "price": 354,
+      "size": 1,
+      "tissue": 2
+    },
+    {
+      "id": 3,
+      "name": "Calça Bekke",
+      "description": "Descrição do item",
+      "images": ["https://img.lojasrenner.com.br/item/590988249/zoom/1.jpg"],
+      "price": 358,
+      "size": 5,
+      "tissue": 4
+    },
+    {
+      "id": 4,
+      "name": "Blusa Kimitsu",
+      "description": "Descrição do item",
+      "images": [
+        "https://www.lunender.com/dw/image/v2/BFCG_PRD/on/demandware.static/-/Sites-masterCatalog_Lunelli/default/dw22c3655f/large/lunender-1.00400-007401-D1.jpg?sw=900&sfrm=jpg&sm=fit&q=80"
+      ],
+      "price": 199,
+      "size": 2,
+      "tissue": 3
+    },
+    {
+      "id": 5,
+      "name": "Luva Marquisa",
+      "description": "Descrição do item",
+      "images": [
+        "https://static3.tcdn.com.br/img/img_prod/681598/luva_refactor_3xu_premium_preta_dedo_curto_7131_1_20200820131529.jpg"
+      ],
+      "price": 365,
+      "size": 6,
+      "tissue": 2
+    },
+    {
+      "id": 6,
+      "name": "Cueca Marquisa",
+      "description": "Descrição do item",
+      "images": [
+        "https://mash.vteximg.com.br/arquivos/ids/180235-1000-1000/Cueca-Boxer-Algodao-Recover-Azul-Marinho-Mash_17093.jpg?v=637299258537430000"
+      ],
+      "price": 210,
+      "size": 4,
+      "tissue": 4
+    },
+    {
+      "id": 7,
+      "name": "Calção Adeidass",
+      "description": "Descrição do item",
+      "images": [
+        "https://static.saopaulomania.com.br/produtos/calcao-adidas-tastigo-19-masculino/28/NQQ-3811-028/NQQ-3811-028_zoom1.jpg?ts=1605906400"
+      ],
+      "price": 390,
+      "size": 2,
+      "tissue": 3
+    },
+    {
+      "id": 8,
+      "name": "Calção Melinda",
+      "description": "Descrição do item",
+      "images": [
+        "https://static.netshoes.com.br/produtos/calcao-de-futebol-em-poliester-liso/06/BDH-0008-006/BDH-0008-006_zoom1.jpg?ts=1572434734&ims=544x"
+      ],
+      "price": 459,
+      "size": 3,
+      "tissue": 2
+    },
+    {
+      "id": 9,
+      "name": "Luva Melinda",
+      "description": "Descrição do item",
+      "images": [
+        "https://m.media-amazon.com/images/I/61rbm2OxTiL._AC_SL1004_.jpg"
+      ],
+      "price": 428,
+      "size": 1,
+      "tissue": 1
+    },
+    {
+      "id": 10,
+      "name": "Botas Pluma",
+      "description": "Descrição do item",
+      "images": [
+        "https://2423.cdn.simplo7.net/static/2423/sku/SGRD_1517_001_BotasSobMedida1803.jpg"
+      ],
+      "price": 227,
+      "size": 5,
+      "tissue": 3
+    },
+    {
+      "id": 11,
+      "name": "Calcinha Pluma",
+      "description": "Descrição do item",
+      "images": [
+        "https://cf.shopee.com.br/file/b4bf4c69fbbaf503b57e8a487846b717"
+      ],
+      "price": 388,
+      "size": 5,
+      "tissue": 1
+    },
+    {
+      "id": 12,
+      "name": "Camisa Haemy",
+      "description": "Descrição do item",
+      "images": [
+        "https://cf.shopee.com.br/file/04b655d82f0facbd82cd3206640f8717"
+      ],
+      "price": 430,
+      "size": 3,
+      "tissue": 4
+    },
+    {
+      "id": 13,
+      "name": "Luva Bekke",
+      "description": "Descrição do item",
+      "images": [
+        "https://m.media-amazon.com/images/I/61rbm2OxTiL._AC_SL1004_.jpg"
+      ],
+      "price": 482,
+      "size": 6,
+      "tissue": 1
+    },
+    {
+      "id": 14,
+      "name": "Luva Haemy",
+      "description": "Descrição do item",
+      "images": [
+        "https://static3.tcdn.com.br/img/img_prod/681598/luva_refactor_3xu_premium_preta_dedo_curto_7131_1_20200820131529.jpg"
+      ],
+      "price": 178,
+      "size": 1,
+      "tissue": 4
+    },
+    {
+      "id": 15,
+      "name": "Calcinha Haemy",
+      "description": "Descrição do item",
+      "images": [
+        "https://cf.shopee.com.br/file/b4bf4c69fbbaf503b57e8a487846b717"
+      ],
+      "price": 421,
+      "size": 5,
+      "tissue": 1
+    },
+    {
+      "id": 16,
+      "name": "Botas Liga dos Vingadores",
+      "description": "Descrição do item",
+      "images": [
+        "https://viamia.vteximg.com.br/arquivos/ids/286865-850-1100/03020311_045_2-BOTA-BICO-FINO-NAPA.jpg?v=637865163280430000"
+      ],
+      "price": 498,
+      "size": 1,
+      "tissue": 2
+    },
+    {
+      "id": 17,
+      "name": "Camisa Melinda",
+      "description": "Descrição do item",
+      "images": [
+        "https://imgcentauro-a.akamaihd.net/900x900/85769819A1/camisa-adams-soccer-masculina-img.jpg"
+      ],
+      "price": 171,
+      "size": 6,
+      "tissue": 3
+    },
+    {
+      "id": 18,
+      "name": "Cueca Melinda",
+      "description": "Descrição do item",
+      "images": [
+        "https://mash.vteximg.com.br/arquivos/ids/180235-1000-1000/Cueca-Boxer-Algodao-Recover-Azul-Marinho-Mash_17093.jpg?v=637299258537430000"
+      ],
+      "price": 174,
+      "size": 4,
+      "tissue": 3
+    },
+    {
+      "id": 19,
+      "name": "Cueca Melinda",
+      "description": "Descrição do item",
+      "images": ["https://picsum.photos/1200/1400?random=18"],
+      "price": 441,
+      "size": 6,
+      "tissue": 2
+    },
+    {
+      "id": 20,
+      "name": "Calcinha Adeidass",
+      "description": "Descrição do item",
+      "images": [
+        "https://static.zattini.com.br/produtos/kit-calcinha-biquini-trifil-12-pecas/34/F18-0580-234/F18-0580-234_zoom1.jpg?ts=1639488455"
+      ],
+      "price": 302,
+      "size": 6,
+      "tissue": 3
+    },
+    {
+      "id": 21,
+      "name": "Calção Arani",
+      "description": "Descrição do item",
+      "images": [
+        "https://static.saopaulomania.com.br/produtos/calcao-adidas-tastigo-19-masculino/28/NQQ-3811-028/NQQ-3811-028_zoom1.jpg?ts=1605906400"
+      ],
+      "price": 246,
+      "size": 5,
+      "tissue": 2
+    },
+    {
+      "id": 22,
+      "name": "Botas Arani",
+      "description": "Descrição do item",
+      "images": [
+        "https://2423.cdn.simplo7.net/static/2423/sku/SGRD_1517_001_BotasSobMedida1803.jpg"
+      ],
+      "price": 170,
+      "size": 3,
+      "tissue": 3
+    },
+    {
+      "id": 23,
+      "name": "Cueca Kimitsu",
+      "description": "Descrição do item",
+      "images": [
+        "https://mash.vteximg.com.br/arquivos/ids/180235-1000-1000/Cueca-Boxer-Algodao-Recover-Azul-Marinho-Mash_17093.jpg?v=637299258537430000"
+      ],
+      "price": 260,
+      "size": 6,
+      "tissue": 2
+    },
+    {
+      "id": 27,
+      "name": "Calção Marquisa",
+      "description": "Descrição do item",
+      "images": [
+        "https://static.netshoes.com.br/produtos/calcao-de-futebol-em-poliester-liso/06/BDH-0008-006/BDH-0008-006_zoom1.jpg?ts=1572434734&ims=544x"
+      ],
+      "price": 336,
+      "size": 3,
+      "tissue": 2
+    },
+    {
+      "id": 28,
+      "name": "Luva Haemy",
+      "description": "Descrição do item",
+      "images": [
+        "https://m.media-amazon.com/images/I/61rbm2OxTiL._AC_SL1004_.jpg"
+      ],
+      "price": 329,
+      "size": 3,
+      "tissue": 2
+    },
+    {
+      "id": 29,
+      "name": "Calção Marquisa",
+      "description": "Descrição do item",
+      "images": [
+        "https://static.netshoes.com.br/produtos/calcao-de-futebol-em-poliester-liso/06/BDH-0008-006/BDH-0008-006_zoom1.jpg?ts=1572434734&ims=544x"
+      ],
+      "price": 306,
+      "size": 2,
+      "tissue": 3
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

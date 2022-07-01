@@ -4,6 +4,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  CircularProgress,
   Stack,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -24,6 +25,7 @@ interface IPageContainerProps {
   onSubmit?: any;
   actions?: IAction[];
   backRoute?: boolean;
+  loading?: boolean;
 }
 
 export default function PageContainer({
@@ -31,6 +33,7 @@ export default function PageContainer({
   actions,
   onSubmit,
   children,
+  loading,
 }: IPageContainerProps) {
   const options = onSubmit
     ? {
@@ -73,7 +76,21 @@ export default function PageContainer({
           height="100%"
           spacing={2}
         >
-          {children}
+          {loading ? (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ) : (
+            children
+          )}
         </CardContent>
 
         {/* actions */}

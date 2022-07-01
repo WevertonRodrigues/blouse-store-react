@@ -6,13 +6,17 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ObjectStyle } from "../../@types";
 import { ImgProductWithFloatingBtn, PageContainer } from "../../components";
 import useNumeral from "../../hooks/useNumeral";
-import { Product, Size, Tissue } from "../../services";
-import { randomEnumValue, randomNumber, sizes, tissues } from "../../util";
+import useRequest from "../../hooks/useRequest";
+import { Product } from "../../services";
+import api from "../../services/api";
+import { sizes, tissues } from "../../util";
 
 const styles: ObjectStyle = {
   clampOverflow: {
@@ -41,18 +45,23 @@ function ListTooltip({ product }: { product: Product }) {
 
       {/* Desc */}
       <Typography component="em" textAlign="left">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam vel
-        illum earum sapiente facere omnis, architecto quidem optio. Nisi quaerat
-        consequuntur atque dolorem aliquid laboriosam dignissimos voluptate
-        repudiandae quisquam illo.
+        {product.description}
       </Typography>
     </Stack>
   );
 }
 
-function ToProduct({ children, id }: { children: ReactNode; id: number }) {
+function ToProduct({
+  children,
+  id,
+  hoverDisabled,
+}: {
+  children: ReactNode;
+  hoverDisabled?: boolean;
+  id: number;
+}) {
   return (
-    <Link className="hover-link" to={`/list/${id}`}>
+    <Link className={!hoverDisabled ? "hover-link" : ""} to={`/list/${id}`}>
       {children}
     </Link>
   );
@@ -61,27 +70,12 @@ function ToProduct({ children, id }: { children: ReactNode; id: number }) {
 function ListItem({ product }: { product: Product }) {
   const { currency } = useNumeral();
 
-  /* const product: Product = {
-    id: index,
-    name: `Item ${index + 1} com nome extenso para teste do overflow em
-    relação a seu pai que é um pseudo-cartão`,
-    description: `
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam vel
-        illum earum sapiente facere omnis, architecto quidem optio. Nisi quaerat
-        consequuntur atque dolorem aliquid laboriosam dignissimos voluptate
-        repudiandae quisquam illo.`,
-    images: [`https://picsum.photos/1200/1400?random=${index}`],
-    price: randomNumber(150, 2500),
-    size: randomEnumValue(Size),
-    tissue: randomEnumValue(Tissue),
-  }; */
-
   return (
     <Card variant="outlined">
       <Tooltip arrow title={<ListTooltip product={product} />}>
         <CardContent component={Stack} sx={styles.cardContent} spacing={2}>
           {/* Image */}
-          <ToProduct id={product.id}>
+          <ToProduct id={product.id} hoverDisabled>
             <ImgProductWithFloatingBtn product={product} />
           </ToProduct>
 
@@ -112,19 +106,23 @@ function ListItem({ product }: { product: Product }) {
 }
 
 export default function ListPage() {
-  const list: Product[] = Array.from(Array(20)).map((_, index) => ({
-    id: index,
-    name: `Item ${index + 1} com nome extenso para teste do overflow em
-    relação a seu pai que é um pseudo-cartão`,
-    description: "Descrição do item",
-    images: [`https://picsum.photos/1200/1400?random=${index}`],
-    price: randomNumber(150, 500),
-    size: randomEnumValue(Size),
-    tissue: randomEnumValue(Tissue),
-  }));
+  const { request, loading } = useRequest();
+
+  const [list, setState] = useState<Product[]>([]);
+
+  useEffect(() => {
+    if (!list.length) {
+      request(
+        async () =>
+          await api.get<Product[]>("/products").then((res) => {
+            setState(res.data);
+          })
+      );
+    }
+  });
 
   return (
-    <PageContainer>
+    <PageContainer loading={loading}>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {list.map((product) => (
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={product.id}>

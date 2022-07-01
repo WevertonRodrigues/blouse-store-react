@@ -6,10 +6,13 @@ import {
   PageContainer,
 } from "../../components";
 import useNumeral from "../../hooks/useNumeral";
-import { Product, Size, Tissue } from "../../services";
-import { sizes, tissues, randomEnumValue, randomNumber } from "../../util";
+import { Product } from "../../services";
+import { sizes, tissues } from "../../util";
 import { Box } from "@mui/system";
 import { ObjectStyle } from "../../@types";
+import { useEffect, useState } from "react";
+import useRequest from "../../hooks/useRequest";
+import api from "../../services/api";
 
 const styles: ObjectStyle = {
   addProduct: {
@@ -23,19 +26,21 @@ export default function ListId() {
   const { id = 0 } = useParams() ?? {};
 
   const { currency } = useNumeral();
+  const { request, loading } = useRequest();
+  const [product, setProduct] = useState<Product>({} as Product);
 
-  const product: Product = {
-    id: Number(id),
-    description: "Bláblá",
-    images: ["https://picsum.photos/800/1000"],
-    name: "Nome do produtcho",
-    price: randomNumber(20, 102500),
-    size: randomEnumValue(Size),
-    tissue: randomEnumValue(Tissue),
-  };
+  useEffect(() => {
+    if (!product.id) {
+      request(async () => {
+        await api.get<Product>(`/products/${id}`).then((res) => {
+          setProduct(res.data);
+        });
+      });
+    }
+  });
 
   return (
-    <PageContainer backRoute>
+    <PageContainer backRoute loading={loading}>
       <Stack direction="row" height="100%" spacing={2}>
         {/* img */}
         <ImgProductWithFloatingBtn product={product} />

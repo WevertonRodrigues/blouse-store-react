@@ -46,6 +46,7 @@ export default function ImgProduct({
           minWidth,
           minHeight,
           ...paper?.sx,
+          justifyContent: "center",
         },
       }}
     >
