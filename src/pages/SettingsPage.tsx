@@ -16,11 +16,12 @@ const fields: IField[] = [
   {
     field: "name",
     label: "Nome",
+    validations: ["required"],
   },
   {
     field: "email",
     label: "E-mail",
-    validations: ["email"],
+    validations: ["required", "email"],
   },
   {
     field: "password",
